@@ -10,6 +10,12 @@ const App = () => {
                 <h3>Player Two: 2</h3>
             </div>
             <input type='text' className={'input'}/>
+            <button className={'submit'}>Submit</button>
+            <div>
+                <button className={'player-btn'}>Player One</button>
+                <button className={'player-btn'}>Player Two</button>
+                <button className={'player-btn'}>Reset</button>
+            </div>
         </div>
     );
 };
