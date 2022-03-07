@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PlayerOne from "./PlayerOne";
 import PlayerTwo from "./PlayerTwo";
+import Reset from "./Reset";
 
 const App = () => {
 
@@ -9,11 +10,15 @@ const App = () => {
     const [playerOneScore, setPlayerOneScore] = useState(0);
     const [playerTwoScore, setPlayerTwoScore] = useState(0);
 
-    console.log(inputValue);
+
+    const getInputValue = (e) => {
+        setInputValue(e.target.value)
+    }
+
 
     const targetScore = () => {
         setWiningScore(inputValue);
-        console.log(winingScore);
+
     }
 
     const playerOneFinalScore = () => {
@@ -24,6 +29,13 @@ const App = () => {
         setPlayerTwoScore((prevState => prevState + 1))
     }
 
+    const reset = () => {
+        setInputValue(null);
+        setWiningScore(null);
+        setPlayerOneScore(0);
+        setPlayerTwoScore(0)
+    }
+
     return (
         <div className={'main'}>
             <h1 className={'title'}>Player vs Player Game</h1>
@@ -32,12 +44,13 @@ const App = () => {
                 <h3>Player One: {playerOneScore}</h3>
                 <h3>Player Two: {playerTwoScore}</h3>
             </div>
-            <input type='text' onChange={event => setInputValue(event.target.value)} className={'input'}/>
-            <button className={'submit'}  onClick={targetScore}>Submit</button>
+
+            <input type='text' onChange={getInputValue} className={'input'}/>
+            <button className={'submit'}  onClick={targetScore} type='submit'>Submit</button>
             <div className={'playground'}>
                 <PlayerOne playerOneFinalScore={playerOneFinalScore}/>
                 <PlayerTwo playerTwoFinalScore={playerTwoFinalScore}/>
-                <button className={'player-btn'}>Reset</button>
+                <Reset reset={reset}/>
             </div>
         </div>
     );
